@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell Waste - Waste Buyers in the Region</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+        section {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 800px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        form label {
+            margin-bottom: 5px;
+        }
+        form input, form select, form textarea {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .btn {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        /* Store Listing Grid */
+        .store-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .store-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        .store-card:hover {
+            transform: translateY(-5px);
+        }
+        .store-photo {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        .store-info {
+            padding: 15px;
+        }
+        .store-info h3 {
+            margin: 0 0 10px;
+            font-size: 1.2em;
+            color: #333;
+        }
+        .store-info p {
+            margin: 0;
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Sell Your Waste</h1>
+    <p>Connect with stores buying waste in your region</p>
+</header>
+
+<section>
+    <h2>Sell Your Waste</h2>
+    <form action="/submit-waste" method="post">
+        <label for="wasteType">Type of Waste:</label>
+        <input type="text" id="wasteType" name="wasteType" placeholder="e.g. Plastic, Metal, Paper, etc." required>
+
+        <label for="quantity">Quantity (in tons):</label>
+        <input type="number" id="quantity" name="quantity" placeholder="Enter quantity" required>
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" placeholder="Enter your location" required>
+
+        <label for="contactInfo">Contact Information:</label>
+        <textarea id="contactInfo" name="contactInfo" rows="4" placeholder="Enter your contact details" required></textarea>
+
+        <button type="submit" class="btn">Submit</button>
+    </form>
+</section>
+
+<section>
+    <h2>Stores Buying Waste in Your Region</h2>
+    <div class="store-grid">
+        <!-- Store 1 -->
+        <div class="store-card">
+            <img src="https://via.placeholder.com/300x150" alt="Store Photo" class="store-photo">
+            <div class="store-info">
+                <h3>WasteMart</h3>
+                <p><strong>Type of Waste:</strong> Plastic, Metal</p>
+                <p><strong>Location:</strong> Houston, USA</p>
+                <p><strong>Contact:</strong> contact@wastemart.com</p>
+            </div>
+        </div>
+
+        <!-- Store 2 -->
+        <div class="store-card">
+            <img src="https://via.placeholder.com/300x150" alt="Store Photo" class="store-photo">
+            <div class="store-info">
+                <h3>Green Recycle Store</h3>
+                <p><strong>Type of Waste:</strong> Paper, Glass</p>
+                <p><strong>Location:</strong> San Francisco, USA</p>
+                <p><strong>Contact:</strong> info@greenrecyclestore.com</p>
+            </div>
+        </div>
+
+        <!-- Store 3 -->
+        <div class="store-card">
+            <img src="https://via.placeholder.com/300x150" alt="Store Photo" class="store-photo">
+            <div class="store-info">
+                <h3>Eco Waste Solutions</h3>
+                <p><strong>Type of Waste:</strong> Electronic Waste</p>
+                <p><strong>Location:</strong> Seattle, USA</p>
+                <p><strong>Contact:</strong> support@ecowaste.com</p>
+            </div>
+        </div>
+
+        <!-- Store 4 -->
+        <div class="store-card">
+            <img src="https://via.placeholder.com/300x150" alt="Store Photo" class="store-photo">
+            <div class="store-info">
+                <h3>Urban Waste Collectors</h3>
+                <p><strong>Type of Waste:</strong> Plastic, Metal</p>
+                <p><strong>Location:</strong> Miami, USA</p>
+                <p><strong>Contact:</strong> info@urbanwaste.com</p>
+            </div>
+        </div>
+
+        <!-- Store 5 -->
+        <div class="store-card">
+            <img src="https://via.placeholder.com/300x150" alt="Store Photo" class="store-photo">
+            <div class="store-info">
+                <h3>Recycle Hub</h3>
+                <p><strong>Type of Waste:</strong> Paper, Glass</p>
+                <p><strong>Location:</strong> Denver, USA</p>
+                <p><strong>Contact:</strong> contact@recyclehub.com</p>
+            </div>
+        </div>
+
+        <!-- Store 6 -->
+        <div class="store-card">
+            <img src="https://via.placeholder.com/300x150" alt="Store Photo" class="store-photo">
+            <div class="store-info">
+                <h3>Zero Waste</h3>
+                <p><strong>Type of Waste:</strong> Plastic, Metal, Glass</p>
+                <p><strong>Location:</strong> Portland, USA</p>
+                <p><strong>Contact:</strong> hello@zerowaste.com</p>
+            </div>
+        </div>
+
+        <!-- Store 7 -->
+        <div class="store-card">
+            <img src="https://via.placeholder.com/300x150" alt="Store Photo" class="store-photo">
+            <div class="store-info">
+                <h3>BioCycle</h3>
+                <p><strong>Type of Waste:</strong> Organic Waste</p>
+                <p><strong>Location:</strong> Austin, USA</p>
+                <p><strong>Contact:</strong> contact@biocycle.com</p>
+            </div>
+        </div>
+
+        <!-- Store 8 -->
+        <div class="store-card">
+            <img src="https://via.placeholder.com/300x150" alt="Store Photo" class="store-photo">
+            <div class="store-info">
+                <h3>Clean Earth Recycling</h3>
+                <p><strong>Type of Waste:</strong> Electronic Waste</p>
+                <p><strong>Location:</strong> Boston, USA</p>
+                <p><strong>Contact:</strong> support@cleanearth.com</p>
+            </div>
+        </div>
+
+        <!-- Store 9 -->
+        <div class="store-card">
+            <img src="https://via.placeholder.com/300x150" alt="Store Photo" class="store-photo">
+            <div class="store-info">
+                <h3>RecycleIt</h3>
+                <p><strong>Type of Waste:</strong> Metal, Plastic</p>
+                <p><strong>Location:</strong> Phoenix, USA</p>
+                <p><strong>Contact:</strong> info@recycleit.com</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

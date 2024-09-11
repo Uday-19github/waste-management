@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find My Location on Map</title>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+        }
+
+        #map {
+            height: 500px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #location {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Find My Current Location on Map</h1>
+        <button onclick="getLocation()">Get Location</button>
+        <div id="location"></div>
+    </div>
+
+    <!-- Map container -->
+    <div id="map"></div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <script>
+        var map;
+        var marker;
+
+        // Initialize map
+        function initMap() {
+            map = L.map('map').setView([51.505, -0.09], 13);  // Default view (before getting user location)
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+        }
+
+        // Get user's location
+        function getLocation() {
+            const locationDiv = document.getElementById('location');
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                locationDiv.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        // Display the user's position on the map and submit to homepage.php
+        function showPosition(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+
+            // Update location text
+            document.getElementById('location').innerHTML = `Latitude: ${latitude} <br> Longitude: ${longitude}`;
+
+            // Set the map view to the user's location
+            map.setView([latitude, longitude], 13);
+
+            // If a marker exists, remove it before adding the new one
+            if (marker) {
+                map.removeLayer(marker);
+            }
+
+            // Add a marker at the user's location
+            marker = L.marker([latitude, longitude]).addTo(map)
+                .bindPopup("You are here!").openPopup();
+
+            // Redirect to homepage.php with latitude and longitude as query parameters
+            window.location.href = `homepage.php?latitude=${latitude}&longitude=${longitude}`;
+        }
+
+        // Handle errors if Geolocation is denied or unavailable
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    document.getElementById('location').innerHTML = "User denied the request for Geolocation.";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    document.getElementById('location').innerHTML = "Location information is unavailable.";
+                    break;
+                case error.TIMEOUT:
+                    document.getElementById('location').innerHTML = "The request to get user location timed out.";
+                    break;
+                case error.UNKNOWN_ERROR:
+                    document.getElementById('location').innerHTML = "An unknown error occurred.";
+                    break;
+            }
+        }
+
+        // Initialize the map when the page loads
+        window.onload = initMap;
+    </script>
+
+</body>
+</html>
